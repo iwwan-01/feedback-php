@@ -1,5 +1,9 @@
 <?php include './inc/header.php'?>
 <?php 
+
+// Hardcoded associative array
+
+/*
   $feedback = [
     [
       'id' => '1',
@@ -20,6 +24,13 @@
       'body' => 'Traversy Media Rocks!'
     ]
   ]
+*/
+
+// Fetching data from MySQL database
+
+  $sql = 'SELECT * FROM feedback';
+  $result = mysqli_query($conn, $sql);
+  $feedback = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
         <h2>Past Feedback</h2>
 
@@ -32,7 +43,7 @@
           <div class="card-body text-center">
             <?php echo $item['body'] ?>
             <div class="text-secondary mt-2">
-              By <?php echo $item['name'] ?>
+              By <?php echo $item['name'] ?> on <?php echo $item['date']?>
             </div>
           </div>
         </div>
